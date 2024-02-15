@@ -1,0 +1,6 @@
+1)CodePen
+2)Tiiny.host
+3)WebintoApp
+4)Niotron
+5)Image Resizer
+https://community.niotron.com/t/guide-add-adaptive-icon-in-your-app-easily/8073
