@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Maze</title>
+  <style>
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+#maze {
+  width: 400px;
+  height: 400px;
+  border: 2px solid #333;
+}
+
+.cell {
+  width: calc(100% / 5);
+  height: calc(100% / 5);
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+.wall {
+  background-color: #333;
+}
+
+.start {
+  background-color: #00f;
+}
+
+.end {
+  background-color: #f00;
+}
+
+.current {
+  background-color: #0f0;
+}
+
+</style>
+</head>
+<body>
+  <div id="maze"></div>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const maze = document.getElementById("maze");
+  const gridSize = 5;
+  const numCells = gridSize * gridSize;
+  let startCell, endCell, currentCell;
+
+  function createMaze() {
+    for (let i = 0; i < numCells; i++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      maze.appendChild(cell);
+
+      if (i === 0) {
+        cell.classList.add("start");
+        startCell = cell;
+        currentCell = startCell;
+      } else if (i === numCells - 1) {
+        cell.classList.add("end");
+        endCell = cell;
+      } else if (Math.random() < 0.3) {
+        cell.classList.add("wall");
+      }
+
+      cell.addEventListener("mouseover", function() {
+        if (!cell.classList.contains("wall")) {
+          cell.classList.add("current");
+        }
+      });
+
+      cell.addEventListener("mouseleave", function() {
+        if (!cell.classList.contains("wall")) {
+          cell.classList.remove("current");
+        }
+      });
+    }
+  }
+
+  createMaze();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Style Preview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #text-input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    #font-selector {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .font-preview {
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #333;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="text-input" placeholder="Enter text...">
+  <select id="font-selector">
+    <option value="Arial, sans-serif">Arial</option>
+    <option value="Times New Roman, serif">Times New Roman</option>
+    <option value="Courier New, monospace">Courier New</option>
+    <option value="Georgia, serif">Georgia</option>
+    <option value="Comic Sans MS, cursive">Comic Sans MS</option>
+    <option value="Verdana, sans-serif">Verdana</option>
+    <option value="Impact, Charcoal, sans-serif">Impact</option>
+    <option value="Lucida Console, Monaco, monospace">Lucida Console</option>
+    <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+    <option value="Arial Black, sans-serif">Arial Black</option>
+    <option value="Palatino Linotype, Book Antiqua, Palatino, serif">Palatino Linotype</option>
+    <option value="Garamond, serif">Garamond</option>
+    <option value="Bookman Old Style, serif">Bookman Old Style</option>
+    <option value="Century Gothic, sans-serif">Century Gothic</option>
+    <option value="Franklin Gothic Medium, Franklin Gothic, sans-serif">Franklin Gothic Medium</option>
+    <option value="Lucida Sans Unicode, Lucida Grande, sans-serif">Lucida Sans Unicode</option>
+    <option value="Arial Narrow, sans-serif">Arial Narrow</option>
+    <option value="Gill Sans, Gill Sans MT, Calibri, sans-serif">Gill Sans</option>
+    <option value="Cambria, Georgia, serif">Cambria</option>
+    <option value="Rockwell, serif">Rockwell</option>
+    <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
+    <option value="Helvetica, Arial, sans-serif">Helvetica</option>
+    <option value="MS Sans Serif, Geneva, sans-serif">MS Sans Serif</option>
+    <option value="MS Serif, New York, sans-serif">MS Serif</option>
+    <option value="Consolas, Monaco, monospace">Consolas</option>
+  </select>
+
+  <div id="preview-container"></div>
+
+  <script>
+    const textInput = document.getElementById('text-input');
+    const fontSelector = document.getElementById('font-selector');
+    const previewContainer = document.getElementById('preview-container');
+
+    textInput.addEventListener('input', updatePreview);
+    fontSelector.addEventListener('change', updatePreview);
+
+    function updatePreview() {
+      const text = textInput.value;
+      const selectedFont = fontSelector.value;
+
+      // Clear previous previews
+      previewContainer.innerHTML = '';
+
+      // Create and append previews with different fonts
+      const fonts = selectedFont.split(',');
+      fonts.forEach(font => {
+        const preview = document.createElement('div');
+        preview.textContent = text;
+        preview.style.fontFamily = font.trim();
+        preview.className = 'font-preview';
+        previewContainer.appendChild(preview);
+      });
+    }
+  </script>
+</body>
+</html>
